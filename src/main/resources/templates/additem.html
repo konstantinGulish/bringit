@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Add Item Form</title>
+</head>
+<body>
+<h1> Add Item Form </h1>
+<form action = "#"
+      th:action="@{/process}"
+      th:object="${item}"
+      method="post">
+    <input type="hidden" th:field="*{id}"/>
+    <br/>
+    <label>Item name:</label>
+    <input type ="text" th:field="*{name}"/>
+    <br/>
+    <label>Item Tags</label>
+    <br/>
+    <select class="form-control" id="tags" th:field="*{tags}" multiple="multiple" >
+        <option th:each="tag : ${tags}"
+                th:value="${{tag}}"
+                th:text="${tag.name}">Tag name</option>
+    </select>
+    <br/>
+    <label>Item description:</label>
+    <input type ="text" th:field="*{description}"/>
+    <br/>
+    <label>Item picture (url):</label>
+    <input type ="text" th:field="*{picture}"/>
+    <br/>
+    <label>Item price:</label>
+    <input type ="text" th:field="*{price}"/>
+    <br/>
+    <input type = "submit" value="Add Item" />
+</form>
+</body>
+</html>

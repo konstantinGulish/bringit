@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="www.thymeleaf.org"  xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head>
+    <meta charset="UTF-8">
+    <title>Item List</title>
+</head>
+<body>
+<h1> Item List </h1>
+<div sec:authorize="isAnonymous()" th:each="item: ${unregistereditems}">
+    <p th:text="${item.name}"></p>
+    <p th:each ="tag:${item.tags}">
+        <span th:text ="tag.name"></span>
+    </p>
+    <p th:text="${item.description}"></p>
+    <img th:src="${item.picture}" alt ="item picture">
+    <p>$<span th:text ="${#numbers.formatDecimal(item.price, 0, 'COMMA', 2, 'POINT')}"></span>
+    </p>
+</div>
+<div sec:authorize="isAuthenticated()" th:each="item: ${items}">
+    <p th:text="${item.name}"></p>
+    <p th:each ="tag:${item.tags}">
+        <span th:text ="tag.name"></span>
+    </p>
+    <p th:text="${item.description}"></p>
+    <img th:src="${item.picture}" alt ="item picture">
+    <p>$<span th:text ="${#numbers.formatDecimal(item.price, 0, 'COMMA', 2, 'POINT')}"></span>
+    </p>
+</div>
+</body>
+</html>
